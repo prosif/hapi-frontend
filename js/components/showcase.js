@@ -142,9 +142,14 @@ define(function (require) {
 	     selectedGetCategory = this.state.selectedGetCategory,
              selectedPostCategory = this.state.selectedPostCategory;
 
-         if(getCategoryResults[0]){ 
+         if(getCategoryResults[0]){
+	    var count = 0; 
             var getCategories = getCategoryResults.map(function(category){
-               var selectCategory = function(e){this.handleGetCategorySelect(category)}.bind(this);
+               if(count >= 8){
+	          return;
+	       }
+               count++;
+	       var selectCategory = function(e){this.handleGetCategorySelect(category)}.bind(this);
                return (<div className="box-link category-result" onClick={selectCategory}>{category.category}</div>);
             }.bind(this));
          }
@@ -152,7 +157,12 @@ define(function (require) {
             var getCategories = {};
          }
 	 if(postCategoryResults[0]){ 
-            var postCategoryResults = postCategoryResults.map(function(category){
+	    var count = 0; 
+	    var postCategoryResults = postCategoryResults.map(function(category){
+               if(count >= 8){
+                  return;
+               }
+               count++;
                var selectCategory = function(e){this.handlePostCategorySelect(category)}.bind(this);
                return (<div className="box-link category-result" onClick={selectCategory}>{category.category}</div>);
             }.bind(this));
