@@ -1,0 +1,174 @@
+html{
+   height: 100%;
+}
+
+#description p a{
+   color: white;
+}
+
+.find .search-area{
+   float: left;
+   width: 100%;
+}
+
+.post .search-area{
+   float: right;
+   width: 100%;
+}
+
+.result{
+   clear: both;
+   width: 100%;
+   list-style-type: decimal;
+   margin: 2%;
+   text-align: left;
+}
+
+body{
+   width: 100%;
+   height: 100%;
+   margin: 0 auto;
+   background: rgba(48,77,107, 1);
+   color: white;
+   font-weight: 600;
+   font-size: 14pt;
+}
+
+.box-link:hover{
+   cursor: pointer;
+}
+
+.post .data-box{
+   width: 100%;
+}
+
+.category-result{
+   width: 20%;
+   float: left;
+   margin: 0;
+   padding: 0;
+}
+
+.menu-button{
+   width: 30%;
+   display: inline-block;
+   text-align: center;
+   font-weight: bold;
+}
+
+.category-result{
+   border: 2px solid black;
+   background: pink;
+   margin: 1%;
+   width: 23%;
+   display: inline-block;
+}
+
+.random p{
+   margin-top: 5%;
+   margin-bottom: 5%;
+}
+
+.find{
+   float: left;
+   width: 50%;
+}
+
+.post{
+   float: right;
+   width: 50%;
+}
+
+.menu-button a{
+   width: 100%;
+   display: inline-block;
+}
+
+p a{
+   color: rgba(165, 101, 232, 1);
+   text-decoration: underline;
+}
+
+input{
+   color: black;
+}
+
+#showcase{
+   background: rgba(93, 232, 214, 1);
+   text-align: center;
+   height: 500px;
+   width: 80%;
+   color: darkblue;
+   margin: 0 auto;
+}
+
+#showcase p{
+   color: darkblue;
+}
+
+#top{
+   position: relative;
+   height: 100px;
+   width: 80%;
+   margin: 0 auto;
+   margin-bottom: .5%;
+   margin-top: .5%;
+}
+
+#description{
+   position: relative;
+   width: 80%;
+   margin: 0 auto;
+   margin-top: 2%;
+}
+
+#menu-container{
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   height: 100%;
+   padding: 0;
+}
+
+#menu-container a{
+   float: right;
+   position: relative;
+   display: block;
+   height: 100%;
+   margin-left: 1%;
+   border: 3px solid rgba(93, 232, 214, 1);
+   color: rgb(103,255, 106);
+   background: rgba(165, 101, 232, 1);
+}
+
+#menu-container a:hover{
+   text-decoration: underline;
+   color: inherit;
+}
+
+#logo{
+   position: relative;
+   padding: 0;
+   margin: 0;
+}
+
+#logo img{
+   display: inline-block;
+   padding: 0;
+   margin: 0;
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+#logo h1{
+   font-size: 48pt;
+   color: rgb(103, 255, 106);
+   display: inline-block;
+   left: 110px;
+   position: relative;
+}
+
+#footer{
+   text-align: center;
+}
