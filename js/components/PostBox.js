@@ -2,39 +2,22 @@ define(function (require) {
    "use strict";
    
    var React = require('react'),
-       GetBox = require('components/GetBox'),
-       PostBox = require('components/PostBox'),
        $ = require('jquery'),
        cookie = require('cookie');
    
    return React.createClass({
       getInitialState: function(){
          return({
-            getSearch: "",
 	    postSearch: "",
             postData: "",
             postCategory: "",
-            getCategoryResults: {},
             postCategoryResults: {},
-            getResults: {},
-            selectedGetCategory: "",
             selectedPostCategory: "",
 	    successMessage: ""
          });
       },
 
-      getRandomFact: function(){
-         $.ajax({
-            url: '/api/items/',
-            method: "GET",
-            success: function(data) {
-                var randomId = Math.floor(Math.random() * 10) % data.count;
-		this.setState({random: data.results[randomId]});
-            }.bind(this),
-         });
-      },
- 
-     handleSearchChange: function(e){
+      handleSearchChange: function(e){
         e.preventDefault();
         this.setState({getSearch: e.target.value});
          $.ajax({
@@ -47,21 +30,11 @@ define(function (require) {
  
      },
 
-     componentDidMount: function(){
-        this.getRandomFact();
-	this.getCategories();
-     },
+//     componentDidMount: function(){
+        //this.getRandomFact();
+//	this.getCategories();
+     //},
  
-     getCategories: function(){
-        $.ajax({
-           url: '/api/categories',
-           method: 'GET',
-           success: function(data){
-              this.setState({categories: data})
-           }.bind(this),
-        });
-     },
-
      handlePostSearchChange: function(e){
         e.preventDefault();
         this.setState({postSearch: e.target.value});
@@ -79,21 +52,6 @@ define(function (require) {
             id = regex.exec(input.url);
      	this.setState({selectedPostCategory: id[0]});
      },  
-
-     handleGetCategorySelect: function(input){
-        $.ajax({
-           url: '/api/items?category='+input.category,
-           method: 'GET',
-           success: function(data){
-	      if(!data.results[0]){
-                 this.setState({getResults:[{data:"Nothing about that yet. You should post something!"}]});
-	      }
-	      else{
-                 this.setState({getResults: data.results});
-              }
-              }.bind(this) 
-        });
-     },
 
      handlePostDataChange: function(e){
         e.preventDefault();
@@ -135,11 +93,55 @@ define(function (require) {
      },
 
      render: function() {
+        var postCategorySearch = this.state.postSearch,
+            postData = this.state.postData,
+            postCategory = this.state.postCategory,
+            postCategoryResults = this.state.postCategoryResults,
+            selectedPostCategory = this.state.selectedPostCategory;
+
+       	 if(postCategoryResults[0]){ 
+	    var count = 0; 
+	    var postCategoryResults = postCategoryResults.map(function(category){
+               if(count >= 8){
+                  return;
+               }
+               count++;
+               var selectCategory = function(e){this.handlePostCategorySelect(category)}.bind(this);
+               return (<div className="box-link category-result" onClick={selectCategory}>{category.category}</div>);
+            }.bind(this));
+         }
+         else{
+            var postCategoryResults = {};
+         }	
+       
+	if(postCategorySearch && !postCategoryResults[0]){
+		var secondBox = 
+		<div className="box-link" onClick={this.postNewCategory}>
+		Category "{postCategorySearch}" doesn't exist in the database. You can click here to create it!
+		</div>
+	}
+	  
+	else if(this.state.selectedPostCategory){
+		var secondBox = 
+                  <div>
+		  <input type="text" className="data-box" value={postData} onChange={this.handlePostDataChange} />
+                  <a className="btn btn-default" href="#" role="button" onClick={this.handlePost}>Post!</a>
+                  </div>
+        }	
+	else{
+		var secondBox = {};
+	}
+
          return(
-            <div className="row" id="showcase">
-	       <GetBox />
-	       <PostBox />
-            </div>
+	       <div className="post-box">
+                  <span className="search-area">
+  		  Post something about...
+                  <input type="text" value={postCategorySearch} onChange={this.handlePostSearchChange} />
+		  </span>
+		  {postCategoryResults}
+		  {secondBox}  
+		  {this.state.successMessage}
+               </div>
          );
       }
     });
