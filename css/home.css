@@ -49,10 +49,14 @@ body{
    width: 100%;
 }
 
-.category-result{
-   width: 20%;
+.category-result{ 
+   border: 2px solid black;
+   background: rgba(165, 101, 232, 1);
+   color: white;
+   margin: 1%;
+   width: 23%;
+   display: inline-block;
    float: left;
-   margin: 0;
    padding: 0;
 }
 
@@ -61,14 +65,6 @@ body{
    display: inline-block;
    text-align: center;
    font-weight: bold;
-}
-
-.category-result{
-   border: 2px solid black;
-   background: pink;
-   margin: 1%;
-   width: 23%;
-   display: inline-block;
 }
 
 .random p{
@@ -132,7 +128,7 @@ input{
    height: 100%;
    margin-left: 1%;
    border: 3px solid rgba(93, 232, 214, 1);
-   color: rgb(103,255, 106);
+   color: white;
    background: rgba(165, 101, 232, 1);
 }
 
